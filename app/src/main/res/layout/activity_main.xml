@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/LinearVerticalFormat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/LinearVertical2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_image_format"
+            android:textSize="16sp"/>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/materialButtonFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:accessibilityTraversalAfter="@id/buttonSelectFile"
+            android:contentDescription="@string/select_quality_of_image"
+            app:checkedButton="@id/buttonPNG"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/buttonJPG"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/jpg"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonPNG"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/png"
+                android:textSize="16sp" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearVertical2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/textViewName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LinearVerticalFormat">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_image_quality"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/materialButtonQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:accessibilityTraversalAfter="@id/buttonSelectFile"
+            android:contentDescription="@string/select_quality_of_image"
+            app:checkedButton="@id/buttonNormal"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/buttonOKqual"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/ok"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonNormal"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/normal"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonHigh"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/high"
+                android:textSize="16sp" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/buttonSelectFile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LinearVertical2" />
+
+    <Button
+        android:id="@+id/buttonSelectFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnSelectFilePress"
+        android:text="@string/select_pdf_file"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/textViewPath"
+        app:layout_constraintEnd_toStartOf="@+id/buttonInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+
+    <Button
+        android:id="@+id/buttonInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnInfoPress"
+        android:text="@string/info"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPath"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/buttonSelectFile"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
+    <TextView
+        android:id="@+id/textViewPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectFile" />
+
+    <ProgressBar
+        android:id="@+id/progressBarIndef"
+        style="?android:attr/progressBarStyleHorizontal"
+        app:layout_constraintWidth_percent="0.5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSelectFile" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
