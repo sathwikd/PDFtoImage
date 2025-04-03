@@ -23,6 +23,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.button.MaterialButtonToggleGroup
+import androidx.core.net.toUri
 
 class MainActivity : AppCompatActivity() {
 
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                     textViewGoto.text = getString(R.string.goto_internal_storage_pictures)
                     val selectedPages = data.getIntArrayExtra("SELECTED_PAGES")
                     val pdfUriString = data.getStringExtra("PDF_URI")
-                    val pdfUri = Uri.parse(pdfUriString)
+                    val pdfUri = pdfUriString?.toUri()
                     val fileName = data.getStringExtra("PDF_FILE_NAME")
 
                     if (selectedPages != null && pdfUri != null && fileName != null) {
