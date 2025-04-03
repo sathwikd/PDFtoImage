@@ -16,7 +16,7 @@ class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeUtilsBasic.loadTheme(this)
+        ThemeUtilsBasic.applyThemeAndEdgeToEdge(this)
         setContentView(R.layout.activity_info)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

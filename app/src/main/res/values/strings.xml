@@ -19,7 +19,18 @@
     <string name="default_button">System</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
-    <string name="_2023_sathwik_dinesh">© 2023 Sathwik Dinesh</string>
+    <string name="_2023_sathwik_dinesh">© 2025 Sathwik Dinesh</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
+    <string name="goto_internal_storage_pictures">Goto: Internal Storage / Pictures / PDFtoIMG /</string>
+    <string name="operation_cancelled">Operation Cancelled</string>
+    <string name="max_pages">Maximum pages allowed- 80</string>
+    <string name="select_all">Select All</string>
+    <string name="convert_to_image">Convert to Image</string>
+    <string name="preview_image">Preview Image</string>
+    <string name="pdf_page_preview">PDF page preview</string>
+
+    <!-- <string name="goto_internal_storage_pictures">Go to Internal Storage/Pictures</string> -->
+
+    <!-- <string name="ok">OK</string> -->
 </resources>

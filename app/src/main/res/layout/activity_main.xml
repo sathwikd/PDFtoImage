@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textViewName"
+        app:layout_constraintBottom_toTopOf="@+id/LinearLFileDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LinearVerticalFormat">
@@ -114,15 +115,32 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/textViewName"
+    <LinearLayout
+        android:id="@+id/LinearLFileDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/buttonSelectFile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LinearVertical2" />
+        app:layout_constraintTop_toBottomOf="@id/LinearVertical2">
+
+        <TextView
+            android:id="@+id/textViewGoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goto_internal_storage_pictures"
+            android:textAlignment="center"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAlignment="center" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonSelectFile"
@@ -134,7 +152,7 @@
         app:layout_constraintBottom_toTopOf="@id/textViewPath"
         app:layout_constraintEnd_toStartOf="@+id/buttonInfo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintTop_toBottomOf="@+id/LinearLFileDetails" />
 
 
     <Button
@@ -147,7 +165,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewPath"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonSelectFile"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintTop_toBottomOf="@+id/LinearLFileDetails" />
 
     <TextView
         android:id="@+id/textViewPath"

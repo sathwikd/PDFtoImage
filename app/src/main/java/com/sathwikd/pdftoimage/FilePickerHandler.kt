@@ -28,7 +28,7 @@ class FilePickerHandler (
                 // Get name of the file
                 val fileName = getFileName(uri)
                 if (fileName != null) {
-                    textViewFileName.text = fileName
+                    textViewFileName.text = removeFileExtension(fileName)
                     onFilePicked(uri, fileName) // Invoke callback
                 } else {
                     Toast.makeText(activity, "Could not retrieve file name", Toast.LENGTH_SHORT).show()
@@ -48,5 +48,11 @@ class FilePickerHandler (
             type = "application/pdf" // Only PDF files
         }
         filePickerActivityResult.launch(intent)
+    }
+
+    private fun removeFileExtension(fileName: String): String {
+        // Remove extension
+        val dotIndex = fileName.lastIndexOf('.')
+        return if (dotIndex > 0) fileName.substring(0, dotIndex) else fileName
     }
 }

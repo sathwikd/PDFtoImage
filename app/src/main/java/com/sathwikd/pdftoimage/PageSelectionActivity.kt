@@ -25,6 +25,7 @@ class PageSelectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ThemeUtilsBasic.applyThemeAndEdgeToEdge(this)
         setContentView(R.layout.activity_select_pages)
 
         recyclerView = findViewById(R.id.pageRecyclerView)

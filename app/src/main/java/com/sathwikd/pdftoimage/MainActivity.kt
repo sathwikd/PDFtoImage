@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var textViewUri: TextView
     private lateinit var textViewFileName: TextView
+    private lateinit var textViewGoto: TextView
 
     private var qualityOfImage = 2
     private var formatOfImage = Bitmap.CompressFormat.PNG
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ThemeUtilsBasic.loadTheme(this)
+        ThemeUtilsBasic.applyThemeAndEdgeToEdge(this)
         setContentView(R.layout.activity_main)
 
         requestFilePermission(this)
@@ -69,6 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         textViewUri = findViewById(R.id.textViewPath)
         textViewFileName = findViewById(R.id.textViewName)
+        textViewGoto = findViewById(R.id.textViewGoto)
 
         // Important activity which opens file explorer and after selection, does the PDF to Image conversion
         filePickerHandler = FilePickerHandler(
@@ -87,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val data = result.data
                 if (data != null) {
+                    textViewGoto.visibility = View.VISIBLE
+                    textViewGoto.text = getString(R.string.goto_internal_storage_pictures)
                     val selectedPages = data.getIntArrayExtra("SELECTED_PAGES")
                     val pdfUriString = data.getStringExtra("PDF_URI")
                     val pdfUri = Uri.parse(pdfUriString)
@@ -105,6 +110,10 @@ class MainActivity : AppCompatActivity() {
                         )
                     }
                 }
+            }
+            else {
+                textViewGoto.visibility = View.VISIBLE
+                textViewGoto.text = getString(R.string.operation_cancelled)
             }
         }
     }
@@ -161,12 +170,6 @@ class MainActivity : AppCompatActivity() {
             Log.e(TAG, "Error handling file URI", e)
         }
     }
-
-//    private fun removeFileExtension(fileName: String): String {
-//        // Remove extension
-//        val dotIndex = fileName.lastIndexOf('.')
-//        return if (dotIndex > 0) fileName.substring(0, dotIndex) else fileName
-//    }
 
     fun btnInfoPress(view: View) {
         startActivity(Intent(this@MainActivity, InfoActivity::class.java))

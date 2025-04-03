@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="@color/white"
+        android:contentDescription="@string/preview_image"
         android:maxWidth="200dp"
         android:maxHeight="200dp"
         android:scaleType="fitCenter"

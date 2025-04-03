@@ -19,7 +19,8 @@
     <string name="default_button">System</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
-    <string name="_2023_sathwik_dinesh">© 2023 Sathwik Dinesh</string>
+    <string name="_2023_sathwik_dinesh">© 2025 Sathwik Dinesh</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
+    <string name="goto_internal_storage_pictures">Goto: Internal Storage / Pictures / PDFtoIMG /</string>
 </resources>
