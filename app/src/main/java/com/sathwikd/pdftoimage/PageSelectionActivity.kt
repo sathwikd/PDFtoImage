@@ -8,10 +8,12 @@ import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.createBitmap
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.core.net.toUri
 
 class PageSelectionActivity : AppCompatActivity() {
 
@@ -35,7 +37,13 @@ class PageSelectionActivity : AppCompatActivity() {
 
         val pdfUriString = intent.getStringExtra("PDF_URI")
         val fileName = intent.getStringExtra("PDF_FILE_NAME")
-        pdfUri = Uri.parse(pdfUriString)
+        pdfUri = pdfUriString?.toUri() ?: run {
+            // Handle the null case here.
+            Log.e("PageSelectionActivity", "PDF_URI extra is missing.")
+
+            //finish()
+            Uri.EMPTY
+        }
 
         // Initialize pages list
         pages = ArrayList()
@@ -56,13 +64,19 @@ class PageSelectionActivity : AppCompatActivity() {
         // Confirm button to return the selected pages
         val btnConfirm = findViewById<Button>(R.id.buttonConfirm)
         btnConfirm.setOnClickListener {
-            val resultIntent = Intent().apply {
-                putExtra("SELECTED_PAGES", selectedPages.toIntArray())
-                putExtra("PDF_URI", pdfUriString)
-                putExtra("PDF_FILE_NAME", fileName)
+
+            if (selectedPages.isEmpty()) {
+                // Handle the case where no pages are selected
+                Toast.makeText(this, "Please select a page to convert", Toast.LENGTH_SHORT).show()
+            } else {
+                val resultIntent = Intent().apply {
+                    putExtra("SELECTED_PAGES", selectedPages.toIntArray())
+                    putExtra("PDF_URI", pdfUriString)
+                    putExtra("PDF_FILE_NAME", fileName)
+                }
+                setResult(RESULT_OK, resultIntent)
+                finish()
             }
-            setResult(RESULT_OK, resultIntent)
-            finish()
         }
 
         // Get reference to the Select All checkbox
@@ -84,8 +98,8 @@ class PageSelectionActivity : AppCompatActivity() {
         }
     }
 
-    private val THUMBNAIL_MAX_WIDTH = 500
-    private val THUMBNAIL_MAX_HEIGHT = 500
+    private val thumbnailMaxWidth = 500
+    private val thumbnailMaxHeight = 500
 
     private fun loadPdfThumbnails(pdfUri: Uri) {
         try {
@@ -109,12 +123,12 @@ class PageSelectionActivity : AppCompatActivity() {
 
                     if (aspectRatio > 1) {
                         // Landscape or wide
-                        thumbnailWidth = THUMBNAIL_MAX_WIDTH
-                        thumbnailHeight = (THUMBNAIL_MAX_WIDTH / aspectRatio).toInt()
+                        thumbnailWidth = thumbnailMaxWidth
+                        thumbnailHeight = (thumbnailMaxWidth / aspectRatio).toInt()
                     } else {
                         // Portrait or tall
-                        thumbnailHeight = THUMBNAIL_MAX_HEIGHT
-                        thumbnailWidth = (THUMBNAIL_MAX_HEIGHT * aspectRatio).toInt()
+                        thumbnailHeight = thumbnailMaxHeight
+                        thumbnailWidth = (thumbnailMaxHeight * aspectRatio).toInt()
                     }
                     val bitmap = createBitmap(thumbnailWidth, thumbnailHeight)
 

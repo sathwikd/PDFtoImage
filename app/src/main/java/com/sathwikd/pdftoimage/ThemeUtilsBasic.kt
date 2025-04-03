@@ -1,11 +1,9 @@
 package com.sathwikd.pdftoimage
 
-import android.app.Activity
 import android.content.Context
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ComponentActivity
-import androidx.core.view.WindowCompat
+import androidx.core.content.edit
 
 object ThemeUtilsBasic {
 
@@ -25,6 +23,6 @@ object ThemeUtilsBasic {
 
     fun saveTheme(context: Context, themeValue: Int) {
         val sharedPreferences = context.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-        sharedPreferences.edit().putInt(THEME_STATUS, themeValue).apply()
+        sharedPreferences.edit { putInt(THEME_STATUS, themeValue) }
     }
 }
