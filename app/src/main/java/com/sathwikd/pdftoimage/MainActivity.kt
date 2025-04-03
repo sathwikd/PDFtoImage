@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 textViewGoto.visibility = View.VISIBLE
-                textViewGoto.text = getString(R.string.operation_cancelled)
+                textViewGoto.text = getString(R.string.conversion_cancelled)
             }
         }
     }
